@@ -1,5 +1,5 @@
 body {
-  font-family: 'Mina', sans-serif;
+  font-family: "Mina", sans-serif;
 }
 
 #app {
@@ -17,7 +17,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: 1px solid rgba(69, 115, 152, 0.99);
   padding: 5px;
 }

@@ -1,18 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import MonthTable from './components/MonthTable/MonthTable';
-import SortTable from './components/SortTable/SortTable';
-import YearTable from './components/YearTable/YearTable';
-import transformList from './HOC/transformList';
+import React, { useState, useEffect, useMemo } from "react";
+import "./App.css";
+
+import { MonthTable, SortTable, YearTable } from "./components";
+import { withTransformedData } from "./hoc";
 
 const urlList = process.env.REACT_APP_DATA_URL;
-const TransformedMonthTable = transformList(MonthTable, 'month');
-const TransformedYearTable = transformList(YearTable, 'year');
-const TransformedSortTable = transformList(SortTable, 'date', 'asc');
 
-function App() {
+const App = () => {
   const [list, setList] = useState([]);
+
+  const TransformedMonthTable = useMemo(
+    () => withTransformedData(MonthTable, "month"),
+    []
+  );
+
+  const TransformedYearTable = useMemo(
+    () => withTransformedData(YearTable, "year"),
+    []
+  );
   
+  const TransformedSortTable = useMemo(
+    () => withTransformedData(SortTable, "date", "asc"),
+    []
+  );
+
   useEffect(() => {
     fetchList(urlList);
   }, []);
@@ -21,7 +32,7 @@ function App() {
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error('HTTP Error ' + response.status);
+        throw new Error("HTTP Error " + response.status);
       }
       const data = await response.json();
 
@@ -38,6 +49,6 @@ function App() {
       <TransformedSortTable list={list} />
     </div>
   );
-}
+};
 
 export default App;
