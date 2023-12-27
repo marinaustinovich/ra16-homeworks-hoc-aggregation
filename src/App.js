@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import "./App.css";
 
 import { MonthTable, SortTable, YearTable } from "./components";
-import { withTransformedData } from "./hoc";
+import { withTransformedData } from "./hoc-functions";
 
 const urlList = process.env.REACT_APP_DATA_URL;
 
@@ -18,7 +18,7 @@ const App = () => {
     () => withTransformedData(YearTable, "year"),
     []
   );
-  
+
   const TransformedSortTable = useMemo(
     () => withTransformedData(SortTable, "date", "asc"),
     []

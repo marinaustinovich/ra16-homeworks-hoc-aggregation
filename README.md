@@ -1,7 +1,7 @@
 Агрегация данных для таблиц
 ===
 
-deployment: https://aggregation-va9p.onrender.com
+deployment: https://aggregation-clj9.onrender.com
 
 
 Есть набор из трёх компонентов, которые выводят табличные данные: 
